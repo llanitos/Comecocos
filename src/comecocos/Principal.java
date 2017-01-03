@@ -26,8 +26,8 @@ public class Principal {
         // Esto esta hecho en la clase comecocos 
         // Iniciamos objeto comecocos e imprimimos mensaje con posicion inicial
         Comecocos elComecocos = new Comecocos(x, y, d);
-        String posicionInicial = elComecocos.posicionInicial(x, y, d);
-        System.out.println(posicionInicial);
+        String posicion = elComecocos.posicion(x, y, d);
+        System.out.println(posicion);
 
         // TODO remover, solo queria pasar al vairable direccion, seguramente no sea utilizada aqui
         //Comecocos.Direccion direccion = elComecocos.getDireccion();
@@ -37,22 +37,40 @@ public class Principal {
         int numero = leeEntero(mensajeOpcion, 0, 4);
 
         // Opciones. He sado un switch por eficiencia 
-        boolean finalizado = false;
+        boolean finalizado = false; // Utilizar para que el menu salga una y otra vez
         switch (numero) {
             case 0:
                 //Llamar metodo avanzarDiez
-                System.out.println("Avanzando 10");
+                if (d == 0 || d == 180) {
+                    y = elComecocos.avanzarDiezY(y);
+                }
+                if (d == 90 || d == 270) {
+                    x = elComecocos.avanzarDiezX(x);
+                }
+                System.out.println("Avanzando 10...");
+                String posicionMasDiez = elComecocos.posicion(x, y, d);
+                System.out.println(posicionMasDiez);
                 break;
             case 1:
                 // Llamar metodo girarDer
-                System.out.println("Girando a la derecha hacia el SUR");
+                d = elComecocos.girarDer(d);
+                System.out.println("Girando a la derecha...");
+                String posicionDerecha = elComecocos.posicion(x, y, d);
+                System.out.println(posicionDerecha);
                 break;
             case 2:
-                // Llamar metodo girarIzq
-                System.out.println("Girando a la izquierda hacia el OESTE");
+                //Para d = 0 hago d sera 270 para que sea OESTE para las otros les resto 90 en el metodo girarIzq. 
+                if (d == 0) {
+                    d = 270;
+                } else {
+                    d = elComecocos.girarIzq(d);
+                }
+                System.out.println("Girando a la izquierda hacia el OESTE...");
+                String posicionIzquierda = elComecocos.posicion(x, y, d);
+                System.out.println(posicionIzquierda);
                 break;
             case 3:
-                System.out.println("Emitiendo sonido");
+                System.out.println("Emitiendo sonido...");
                 // Llamar metodo emitirSonido
                 break;
             case 4:
