@@ -1,5 +1,15 @@
 package comecocos;
 
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
  *
  * @author llanos
@@ -23,6 +33,11 @@ public class Comecocos {
         this.y = y;
         this.d = d;
     }
+    
+    // metodo set
+    public void setDireccion(Direccion n) {
+        this.direccion=n;
+    }
 
     // Asignar los numeros a los puntos cardinales
     public Direccion getDireccion() {
@@ -43,7 +58,7 @@ public class Comecocos {
             case 270:
                 this.direccion = Direccion.OESTE;
                 break;
-             
+
             case 360:
                 this.direccion = Direccion.NORTE;
                 break;
@@ -62,8 +77,7 @@ public class Comecocos {
         this.d = d;
         // Llamamos al metodo getDireccion para que de la viariable introducida para la direccion d lo transforme en el enum con los carinales.
         getDireccion();
-        this.direccion = direccion;
-        String mensajePosicion = "El comecocos está en la posicion x: " + this.x + " , y: " + this.y + " y con direccion " + direccion + ".";
+        String mensajePosicion = "El comecocos está en la posicion x:" + this.x + ", y:" + this.y + " con direccion " + direccion + ".";
         return mensajePosicion;
     }
 
@@ -82,21 +96,35 @@ public class Comecocos {
         x = x + 10;
         return x;
     }
-    
+
     // Metodo girarDer, calcula el nuevo valor de d sumandole 90 grados para despues poder pasarlo a cardinal
     int girarDer(int d) {
-        this.d= d;
+        this.d = d;
         // Sumamos 90 a d 
         d = d + 90;
         return d;
     }
-    
+
     // Metodo girarIzq, calcula el nuevo valor de d restandole 90 grados para despues poder pasarlo a cardinal
     int girarIzq(int d) {
-        this.d= d;
+        this.d = d;
         // Restamos 90 a d 
         d = d - 90;
         return d;
+    }
+
+    // Metodo para reproducir sonido
+    public void ReproducirSonido(String muere) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(muere).getAbsoluteFile());
+            AudioFormat formatoSonido = audioInputStream.getFormat();
+            DataLine.Info infoSonido = new DataLine.Info(Clip.class, formatoSonido);
+            Clip clip = (Clip)AudioSystem.getLine(infoSonido);
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
     }
 
 }
