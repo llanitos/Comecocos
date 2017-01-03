@@ -37,6 +37,8 @@ public class ES {
         } while (!leido);
         return numero;
     }
+    
+    
 
     /**
      * Este método sirve para escribir el mensaje indicado para solicitar la
@@ -65,6 +67,39 @@ public class ES {
         } while (!leido);
         return numero;
     }
+    
+    /**
+     * Este método sirve para escribir el mensaje indicado para solicitar la
+     * introducción de un dato desde teclado, y espera la introducción de
+     * de solo cirtos números enteros, estos son 0, 90, 180 y 270 para indicar norte, este, sur y oeste respectivamente.
+     *
+     * @param mensaje Es el mensaje que se muestra para solicitar la
+     * introducción del número.
+     * @return El número entero leído.
+     */
+    public static int leeGrados(String mensaje) {
+        int numero = 0;
+        boolean leido = false;
+        Scanner teclado = null;
+        do {
+            ES.msgln(mensaje);
+            try {
+                teclado = new Scanner(System.in);
+                numero = teclado.nextInt();
+                if (numero == 0 || numero == 90 || numero == 180 || numero == 270) {
+                    leido = true;
+                }
+            } catch (Exception e) {
+                ES.msgln("Error: No es un número entero válido. ");
+            }
+        } while (!leido);
+        return numero;
+    }
+    
+    
+    
+    
+    
 
     /**
      * Este método sirve para leer desde teclado cualquier número entero en el
