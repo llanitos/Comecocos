@@ -71,11 +71,11 @@ public class ES {
     /**
      * Este método sirve para escribir el mensaje indicado para solicitar la
      * introducción de un dato desde teclado, y espera la introducción de
-     * de solo cirtos números enteros, estos son 0, 90, 180 y 270 para indicar norte, este, sur y oeste respectivamente.
+     * de solo ciertos números enteros, estos son 0, 90, 180 y 270 para indicar norte, este, sur y oeste respectivamente.
      *
      * @param mensaje Es el mensaje que se muestra para solicitar la
      * introducción del número.
-     * @return El número entero leído.
+     * @return El número entero leído que tiene que sera solo 0, 90, 180 y 270 para indicar norte, este, sur y oeste respectivamente.
      */
     public static int leeGrados(String mensaje) {
         int numero = 0;
@@ -95,10 +95,6 @@ public class ES {
         } while (!leido);
         return numero;
     }
-    
-    
-    
-    
     
 
     /**

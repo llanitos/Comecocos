@@ -1,6 +1,7 @@
 
 package comecocos;
-import static comecocos.ES.leeEntero;
+//import util.ES; TODO: Mover ES.java to util 
+import static comecocos.ES.*;
 
 /**
  *
@@ -10,22 +11,26 @@ public class Principal {
     
     public static void main(String[] args) {
         
+        // Pedir los datos iniciales usando los metodos definidos en ES.java
         String mensajeX = "Introduzca la coordenada en el eje x: ";
-        int leeEntero = leeEntero(mensajeX);
-        int x = leeEntero;
+        int x = leeEntero(mensajeX);
         
         String mensajeY = "Introduzca la coordenada en el eje y: ";
-        int leeEnteroY = leeEntero(mensajeY);
-        int y = leeEnteroY;
+        int y = leeEntero(mensajeY);
         
+        // leeGrados es un metodo añadido por mi a ES.java para controlar que el input sea 0, 90, 180, 270
         String mensajeD = "Introduzca la direccion en grados (solo permitidos 0, 90, 180, 270): ";
-        int leeEnteroD = leeEntero(mensajeD);
-        int direccion = leeEnteroD;
+        int d = leeGrados(mensajeD);
         
-        System.out.println("Coordenada x: " + x);
-        System.out.println("Coordenada y: " + y);
-        System.out.println("Direccion: " + direccion);
+        // Obtener la dirección equivalente a los grados leídos por teclado. Convertir 0, 90, 180, 270 a norte, este, sur, oeste.
         
-    }
+        // Iniciamos objeto comecocos e imprimimos mensaje con posicion inicial
+        Comecocos elComecocos = new Comecocos(x, y, d);
+        String posicionInicial = elComecocos.posicionInicial(x, y, d);
+        System.out.println(posicionInicial);
+        
+    }   
+    
+
     
 }
