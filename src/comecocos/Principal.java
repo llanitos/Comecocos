@@ -4,8 +4,10 @@ import static comecocos.ES.*;
 //import util.ES; TODO: Mover ES.java to util 
 
 /**
- *
- * @author llanos
+ * Clase principal del comecocos. Pregunta al usuario los valores de la posición y crea un objeto de la clase Comecocos basado en los datos. Después da opciones para modificar los valores introducidos e ir cambiando la posición del objeto. Para modificar los valores llama a métodos de la clase Comecocos. 
+ * @author Llanos Núñez Alvarez
+ * @see clase Comecocos
+ * @version05012017A
  */
 public class Principal {
 
@@ -22,12 +24,12 @@ public class Principal {
 
         // leeGrados es un metodo añadido por mi a ES.java para controlar que el input sea 0, 90, 180, 270. Valor de la direccion d
         String mensajeD = "Introduzca la direccion en grados (solo permitidos 0, 90, 180, 270): ";
-        int d = leeGrados(mensajeD);
+        int grados = leeGrados(mensajeD);
 
         // Obtener la dirección equivalente a los grados leídos por teclado esta hecho en la clase comecocos.
         // Iniciamos objeto comecocos e imprimimos mensaje con posicion inicial
-        Comecocos elComecocos = new Comecocos(x, y, d);
-        String posicion = elComecocos.posicion(x, y, d);
+        Comecocos elComecocos = new Comecocos(x, y, grados);
+        String posicion = elComecocos.posicion(x, y, grados);
         System.out.println(posicion);
 
         // Opciones con un switch para que sea mas eficiente
@@ -40,32 +42,32 @@ public class Principal {
             switch (numero) {
                 case 0:
                     //Llamar metodo avanzarDiezX o avanzarDiezY segun una logica de si se tiene que avanzar en x o en y dependiendo de la direccion. Lo he calculado todo con grados 
-                    if (d == 0 || d == 180) {
+                    if (grados == 0 || grados == 180) {
                         y = elComecocos.avanzarDiezY(y);
                     }
-                    if (d == 90 || d == 270) {
+                    if (grados == 90 || grados == 270) {
                         x = elComecocos.avanzarDiezX(x);
                     }
                     System.out.println("Avanzando 10...");
-                    String posicionMasDiez = elComecocos.posicion(x, y, d);
+                    String posicionMasDiez = elComecocos.posicion(x, y, grados);
                     System.out.println(posicionMasDiez);
                     break;
                 case 1:
                     // Llamar metodo girarDer
-                    d = elComecocos.girarDer(d);
+                    grados = elComecocos.girarDer(grados);
                     System.out.println("Girando a la derecha...");
-                    String posicionDerecha = elComecocos.posicion(x, y, d);
+                    String posicionDerecha = elComecocos.posicion(x, y, grados);
                     System.out.println(posicionDerecha);
                     break;
                 case 2:
                     //Para d = 0 hago d sera 270 para que sea OESTE. Para los otros les resto 90 en el metodo girarIzq. 
-                    if (d == 0) {
-                        d = 270;
+                    if (grados == 0) {
+                        grados = 270;
                     } else {
-                        d = elComecocos.girarIzq(d);
+                        grados = elComecocos.girarIzq(grados);
                     }
                     System.out.println("Girando a la izquierda hacia el OESTE...");
-                    String posicionIzquierda = elComecocos.posicion(x, y, d);
+                    String posicionIzquierda = elComecocos.posicion(x, y, grados);
                     System.out.println(posicionIzquierda);
                     break;
                 case 3:
