@@ -1,4 +1,4 @@
-package comecocos ;
+package util ;
 
 import java.util.Scanner;
 
